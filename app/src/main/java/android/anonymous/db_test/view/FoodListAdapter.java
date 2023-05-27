@@ -1,4 +1,4 @@
-package android.anonymous.db_test;
+package android.anonymous.db_test.view;
 
 import android.anonymous.db_test.viewmodel.FoodViewModel;
 import android.view.LayoutInflater;
@@ -33,7 +33,9 @@ public class FoodListAdapter extends ListAdapter<Food, FoodListAdapter.FoodViewH
         Food current = getItem(position);
         holder.bind(current.getFoodName());
         holder.itemView.setOnClickListener(v -> {
-            viewModel.delete(current);
+            if (listener != null) {
+                listener.onItemClick(current);
+            }
         });
     }
 
@@ -71,6 +73,12 @@ public class FoodListAdapter extends ListAdapter<Food, FoodListAdapter.FoodViewH
 
     public interface OnItemClickListener {
         void onItemClick(Food food);
+    }
+
+    private OnItemClickListener listener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }
 
