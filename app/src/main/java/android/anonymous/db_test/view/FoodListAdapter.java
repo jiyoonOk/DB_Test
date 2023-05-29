@@ -42,6 +42,8 @@ public class FoodListAdapter extends ListAdapter<Food, FoodListAdapter.FoodViewH
         return new FoodViewHolder(binding);
     }
 
+    // onBindViewHoler() 메서드는 뷰홀더가 재사용될 때 호출되며, 뷰홀더에 새로운 데이터를 바인딩. 뷰홀더가 새로운 데이터를 얻을 때마다 호출되므로, 뷰홀더가 재사용되는 시점에 데이터를 바인딩하면 됨.
+    // 클릭 리스너를 뷰홀더에 바인딩하면, 뷰홀더가 재사용될 때마다 클릭 리스너를 새로 설정할 필요가 없다.
     @Override
     public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
         Food current = getItem(position);

@@ -15,29 +15,29 @@ public class Food {
     private float foodCarbohydrates;
     private float foodProtein;
     private float foodFat;
-    private String food_company;
+    private String foodCompany;
     private int foodLike = 0;   // default value: 0
 
-    public Food(String foodName, float food1serving, float foodKcal, float foodCarbohydrates, float foodProtein, float foodFat, String food_company, int foodLike) {
+    public Food(String foodName, float food1serving, float foodKcal, float foodCarbohydrates, float foodProtein, float foodFat, String foodCompany, int foodLike) {
         this.foodName = foodName;
         this.food1serving = food1serving;
         this.foodKcal = foodKcal;
         this.foodCarbohydrates = foodCarbohydrates;
         this.foodProtein = foodProtein;
         this.foodFat = foodFat;
-        this.food_company = food_company;
+        this.foodCompany = foodCompany;
         this.foodLike = foodLike;
     }
     //생성자 오버로딩
     @Ignore
-    public Food(String foodName, float food1serving, float foodKcal, float foodCarbohydrates, float foodProtein, float foodFat, String food_company) {
+    public Food(String foodName, float food1serving, float foodKcal, float foodCarbohydrates, float foodProtein, float foodFat, String foodCompany) {
         this.foodName = foodName;
         this.food1serving = food1serving;
         this.foodKcal = foodKcal;
         this.foodCarbohydrates = foodCarbohydrates;
         this.foodProtein = foodProtein;
         this.foodFat = foodFat;
-        this.food_company = food_company;
+        this.foodCompany = foodCompany;
     }
 
     // getter methods...
@@ -48,7 +48,7 @@ public class Food {
     public float getFoodCarbohydrates() { return foodCarbohydrates; }
     public float getFoodProtein() { return foodProtein; }
     public float getFoodFat() { return foodFat; }
-    public String getFood_company() { return food_company; }
+    public String getFoodCompany() { return foodCompany; }
     public int getFoodLike() { return foodLike; }
 
     // 인덱스를 수정하는 setter method
@@ -59,6 +59,6 @@ public class Food {
     public String toString() {
         return "FoodIndex: " + foodIndex + "\n" + "FoodName: " + foodName + "\n" + "Food1serving: " + food1serving + "\n" +
                 "FoodKcal: " + foodKcal + "\n" + "FoodCarbohydrates: " + foodCarbohydrates + "\n" + "FoodProtein: " + foodProtein + "\n" +
-                "FoodFat: " + foodFat + "\n" + "FoodCompany: " + food_company + "\n" + "FoodLike: " + foodLike;
+                "FoodFat: " + foodFat + "\n" + "FoodCompany: " + foodCompany + "\n" + "FoodLike: " + foodLike;
     }
 }

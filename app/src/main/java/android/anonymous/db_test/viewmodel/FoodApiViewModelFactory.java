@@ -13,6 +13,7 @@ public class FoodApiViewModelFactory implements ViewModelProvider.Factory {
         mApplication = application;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         return (T) new FoodApiViewModel(mApplication);

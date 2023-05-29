@@ -64,7 +64,7 @@ public class MealRepository {
         return mealDao.getMealsByDate(mealDate);
     }
 
-    public LiveData<List<Meal>> getMealsByFoodIndex(int foodIndex) {
+  /*  public LiveData<List<Meal>> getMealsByFoodIndex(int foodIndex) {
         return mealDao.getMealsByFoodIndex(foodIndex);
     }
 
@@ -75,5 +75,5 @@ public class MealRepository {
     // 날짜를 기준으로 Meal을 가져오는 메서드
     public LiveData<List<Meal>> getMealByDate(String mealDate) {
         return mealDao.getMealByDate(mealDate);
-    }
+    }*/
 }

@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-//test api 호출 및 data 받아옴. retrofit2 사용
+//api 호출 및 data 받아옴. retrofit2 사용
 public class FoodApiHelper {
         private ApiService apiService;
 
@@ -32,7 +32,7 @@ public class FoodApiHelper {
         return instance;
     }
 
-    //test 생성자 : Retrofit 객체 생성. apiService 인터페이스 초기화.
+    //생성자 : Retrofit 객체 생성. apiService 인터페이스 초기화.
     public FoodApiHelper(Context context) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -41,7 +41,7 @@ public class FoodApiHelper {
         apiService = retrofit.create(ApiService.class);
     }
 
-    //test api 호출 메소드. 음식의 영양성분 정보를 Call<ResponseClass> 타입으로 리턴.
+    //api 호출
     public Call<ResponseClass> getFoodNtrItdntList(String foodName) {
         return apiService.getFoodNtrItdntList(SERVICE_KEY, foodName, null, null, null, null, "json");
     }
@@ -50,15 +50,13 @@ public class FoodApiHelper {
         return this.apiService;
     }
 
-    //test API 요청을 정의.
+    // API 요청을 정의.
     public interface ApiService {
 
         // GET 요청을 할 URL 구성. GET 요청을 할 메소드를 정의. 메소드의 리턴 타입은 Call<응답 클래스>로 지정.
         @GET("getFoodNtrItdntList1")  // 어노테이션 추가. getFoodNtrItdntList1은 API 메소드 이름
 
-        // 메소드의 매개변수는 쿼리 매개변수로 변환. 쿼리 매개변수는 @Query 어노테이션을 사용하여 정의. 쿼리 매개변수란 URL에 포함되는 매개변수를 의미.
-        // Call<응답 클래스>의 응답 클래스는 API 응답을 가진 클래스를 지정. 이 클래스는 JSON 응답을 자동으로 POJO로 변환할 때 사용.
-        // Call이란 Retrofit에서 제공하는 인터페이스. 비동기나 동기로 요청을 실행하고 응답을 받을 수 있음.
+        // ResponseClass로 응답을 받는 메소드.
         Call<ResponseClass> getFoodNtrItdntList(
                 @Query("serviceKey") String serviceKey, // string 형식의 쿼리 매개변수 추가. 왜? serviceKey는 string 형식이기 때문. api에서 확인 가능
                 @Query("desc_kor") String desc_kor,
