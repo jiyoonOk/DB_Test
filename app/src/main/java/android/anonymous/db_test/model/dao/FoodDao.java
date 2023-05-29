@@ -31,4 +31,8 @@ public interface FoodDao {
 
     @Query("SELECT * FROM food WHERE foodName = :foodName")
     LiveData<List<Food>> getFoodByName(String foodName);
+
+    // 비동기적으로 foodName이랑 일치하는 음식을 가져옴
+    @Query("SELECT * FROM food WHERE foodName = :foodName LIMIT 1")
+    Food getFoodByNameSync(String foodName);
 }

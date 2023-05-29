@@ -1,13 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="8dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="food"
+            type="android.anonymous.db_test.model.entity.Food" />
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+
+    </data>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:text="@{food.foodName}"
+        android:onClickListener="@{(view) -> clickListener.onClick(view)}"
+        />
 
-</LinearLayout>
+</layout>

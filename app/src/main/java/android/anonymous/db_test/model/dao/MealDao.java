@@ -37,4 +37,9 @@ public interface MealDao {
     // 체크가 된 Meal을 가져옵니다.
     @Query("SELECT * FROM meal WHERE checked = 1")
     LiveData<List<Meal>> getCheckedMeals();
+
+    // 날짜 매개변수로 주면 그 날짜에 식단 정보를 모두 list로 return 해줌. 날짜 포맷은 "YYMMDD", "230528" 이런식으로
+    @Query("SELECT * FROM meal WHERE mealDate = :mealDate")
+    LiveData<List<Meal>> getMealByDate(String mealDate);
+
 }

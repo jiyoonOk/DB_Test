@@ -25,9 +25,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    dataBinding { enabled = true  }  //DataBinding 활성화
+    buildFeatures { dataBinding true }  //DataBinding 활성화
 }
 
 dependencies {
+
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0' //ScalarsConverter 의존성 추가
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'          //Retrofit 의존성 추가
 

@@ -28,7 +28,7 @@ public class SecondActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewSavedFoods);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final FoodListAdapter adapter = new FoodListAdapter(new FoodListAdapter.FoodDiff(), foodViewModel);
+        final FoodListAdapter adapter = new FoodListAdapter(new FoodListAdapter.FoodDiff(), foodViewModel, false);
         recyclerView.setAdapter(adapter);
 
         foodViewModel.getAllFoods().observe(this, foods -> {
@@ -42,8 +42,5 @@ public class SecondActivity extends AppCompatActivity {
                     .setPositiveButton(android.R.string.ok, null)
                     .show();
         });
-
-
-
     }
 }

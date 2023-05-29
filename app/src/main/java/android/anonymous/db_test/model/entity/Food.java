@@ -51,9 +51,10 @@ public class Food {
     public String getFood_company() { return food_company; }
     public int getFoodLike() { return foodLike; }
 
-    //test
+    // 인덱스를 수정하는 setter method
     public void setFoodIndex(int foodIndex) {this.foodIndex = foodIndex;}
 
+    // 모든 필드를 출력하는 toString() 메소드
     @Override
     public String toString() {
         return "FoodIndex: " + foodIndex + "\n" + "FoodName: " + foodName + "\n" + "Food1serving: " + food1serving + "\n" +

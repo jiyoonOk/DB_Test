@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="android.anonymous.db_test">
 
+    <!-- API 연결을 위한 권한 추가 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -27,9 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".view.SecondActivity" />
-
     </application>
-
 </manifest>

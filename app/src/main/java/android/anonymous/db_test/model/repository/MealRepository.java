@@ -1,5 +1,7 @@
 package android.anonymous.db_test.model.repository;
 
+import static android.anonymous.db_test.model.constants.Constants.DATABASE_NAME;
+
 import android.anonymous.db_test.model.dao.MealDao;
 import android.anonymous.db_test.model.database.AppDatabase;
 import android.anonymous.db_test.model.entity.Meal;
@@ -9,12 +11,14 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MealRepository {
     private static MealRepository instance = null;
     private final MealDao mealDao;
     private final AppDatabase db;
+    private final ExecutorService executorService;  // DB 작업을 위한 스레드 풀.
 
     /* 싱글톤 패턴을 적용하여, getInstance()를 통해 객체를 가져옴.
      why? 여러 뷰모델에서 하나의 레포지토리를 공유함으로 데이터 충돌 방지
@@ -31,28 +35,24 @@ public class MealRepository {
         return instance;
     }
 
+    // 생성자. Room을 빌더패턴을 이용하여 인스턴스화.
     public MealRepository(Context context) {
-        db = Room.databaseBuilder(context, AppDatabase.class, "app-database").build();
+        db = Room.databaseBuilder(context, AppDatabase.class, DATABASE_NAME).build();
         mealDao = db.mealDao();
+        executorService = Executors.newFixedThreadPool(4);
     }
 
     // 이 클래스는 새로운 스레드에서 데이터베이스 작업을 수행.
     public void insertMeal(Meal meal) {
-        Executors.newSingleThreadExecutor().execute(() -> {
-            mealDao.insertMeal(meal);
-        });
+        executorService.execute(() -> {mealDao.insertMeal(meal); });
     }
 
     public void updateMeal(Meal meal) {
-        Executors.newSingleThreadExecutor().execute(() -> {
-            mealDao.updateMeal(meal);
-        });
+        executorService.execute(() -> {mealDao.updateMeal(meal); });
     }
 
     public void deleteMeal(Meal meal) {
-        Executors.newSingleThreadExecutor().execute(() -> {
-            mealDao.deleteMeal(meal);
-        });
+        executorService.execute(() -> {mealDao.deleteMeal(meal); });
     }
 
     // LiveData를 이용하여 데이터를 가져옵니다.
@@ -70,5 +70,10 @@ public class MealRepository {
 
     public LiveData<List<Meal>> getCheckedMeals() {
         return mealDao.getCheckedMeals();
+    }
+
+    // 날짜를 기준으로 Meal을 가져오는 메서드
+    public LiveData<List<Meal>> getMealByDate(String mealDate) {
+        return mealDao.getMealByDate(mealDate);
     }
 }
